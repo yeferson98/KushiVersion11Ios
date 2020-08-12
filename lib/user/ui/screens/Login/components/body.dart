@@ -124,7 +124,7 @@ class _BodyState extends State<Body> {
                             controller: _numerophone,
                             onSaved: (value) => _model.number = value,
                             decoration: InputDecoration(
-                              hintText: 'digite su numero',
+                              hintText: 'digite su número',
                               contentPadding: EdgeInsets.only(top: 8),
                               hintStyle: TextStyle(color: Colors.grey),
                               border: InputBorder.none,
@@ -141,37 +141,6 @@ class _BodyState extends State<Body> {
                       ],
                     ),
                   ),
-                  /*SizedBox(
-                        height: 15,
-                      ),
-                      FadeAnimation(
-                        5,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              child: Checkbox(
-                                value: this.checkVal,
-                                onChanged: (bool value) {
-                                  setState(() {
-                                    this.checkVal = value;
-                                  });
-                                },
-                              ),
-                            ),
-                            Container(
-                              width: 210,
-                              child: Text(
-                                'He leído y hacepto todos los terminos y condiciones',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontStyle: FontStyle.italic,
-                                    color: Colors.black54),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),*/
                   SizedBox(
                     height: 50,
                   ),
@@ -213,7 +182,6 @@ class _BodyState extends State<Body> {
   }
 
   void _envSms() async {
-    SMSENVIO getSms = new SMSENVIO();
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       if (_model.number.length < 9) {

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:kushi/configs/ui_icons.dart';
 import 'package:kushi/shops/model/order.payment.model.dart';
 
+// ignore: must_be_immutable
 class OrderSubDetailTabWidget extends StatefulWidget {
   OrderPaymentModel order;
   int typeOrder = 0;
@@ -324,23 +325,18 @@ class OrderSubDetailTabWidgetState extends State<OrderSubDetailTabWidget> {
   }
 
   Widget statusPayment() {
-    if (widget.typeOrder == 1) {
+    if (widget.order.descriptionPayment != null ||
+        widget.order.descriptionPayment == "" ||
+        widget.order.descriptionPayment == " ") {
       return Text(
-        'Estado de compra: ' + 'Pediente',
-        style: Theme.of(context).textTheme.bodyText1,
-        overflow: TextOverflow.fade,
-        softWrap: false,
-      );
-    } else if (widget.typeOrder == 3) {
-      return Text(
-        'Estado de compra: ' + 'En Proceso',
+        'Estado de compra: ' + widget.order.descriptionPayment,
         style: Theme.of(context).textTheme.bodyText1,
         overflow: TextOverflow.fade,
         softWrap: false,
       );
     } else {
       return Text(
-        'Estado de compra: ' + 'Finalizado',
+        'Estado de compra: ' + 'Not found',
         style: Theme.of(context).textTheme.bodyText1,
         overflow: TextOverflow.fade,
         softWrap: false,

@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:kushi/shops/bloc/shop.bloc.dart';
 import 'package:kushi/shops/ui/screens/wish.list.Product.dart';
-import 'package:kushi/user/ui/screens/notifications.dart';
+import 'package:kushi/user/ui/screens/Login/login_screen.dart';
 import 'package:kushi/user/ui/widgets/drawerItemNotification.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:kushi/bussiness/bloc/business.bloc.dart';
 import 'package:kushi/bussiness/model/business.model.dart';
 import 'package:kushi/configs/intercept.App.dart';
@@ -21,6 +19,7 @@ import 'package:kushi/user/ui/screens/dashboar.User.dart';
 import 'package:kushi/user/ui/screens/orders.dart';
 import 'package:kushi/user/ui/screens/profileUser.dart';
 
+// ignore: must_be_immutable
 class DrawerWidget extends StatefulWidget {
   UserModel user;
   bool inicioState;
@@ -329,7 +328,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             dense: true,
             title: Text(
-              "Versión. 1.1.3",
+              "Versión. 1.1.4",
               style: Theme.of(context).textTheme.bodyText1,
             ),
             trailing: Icon(
@@ -424,8 +423,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   _preferences.remove('isLoggedInUser');
                   _preferences.remove('phone');
                   _preferences.remove('Token');
-
-                  pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => BlocProvider(
+                        child: LoginScreen(),
+                        bloc: UserBloc(),
+                      ),
+                    ),
+                  );
                 },
               ),
               CupertinoDialogAction(
@@ -440,11 +445,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ],
           );
         });
-  }
-
-  static Future<void> pop({bool animated}) async {
-    await SystemChannels.platform
-        .invokeMethod<void>('SystemNavigator.pop', animated);
   }
 
   void verifyLocationActive() async {

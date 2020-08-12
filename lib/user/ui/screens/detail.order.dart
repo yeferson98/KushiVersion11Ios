@@ -1,21 +1,17 @@
-import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:kushi/bussiness/model/business.model.dart';
-import 'package:kushi/components/notification.dart';
-import 'package:kushi/configs/config.select.sound.notification.dart';
 import 'package:kushi/configs/ui_icons.dart';
-import 'package:kushi/pushproviders/push_notification_provider.dart';
 import 'package:kushi/shops/bloc/shop.bloc.dart';
 import 'package:kushi/shops/model/order.payment.model.dart';
 import 'package:kushi/user/model/user.model.dart';
-import 'package:kushi/user/ui/screens/notifications.dart';
 import 'package:kushi/user/ui/screens/orders.dart';
 import 'package:kushi/user/ui/widgets/appBarNotification.dart';
 import 'package:kushi/user/ui/widgets/order.paymentDetails.dart';
 import 'package:kushi/user/ui/widgets/orders.payment.product.details.dart';
 
+// ignore: must_be_immutable
 class OrderdetailWidget extends StatefulWidget {
   UserModel user;
   Business business;
@@ -237,19 +233,25 @@ class _OrderdetailWidgetState extends State<OrderdetailWidget>
 
   routeNavigatorDetailValue() {
     if (widget.stateNavigator == 0) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).push(
+        MaterialPageRoute(
           builder: (BuildContext context) => OrdersWidget(
               currentTab: 0,
               user: widget.user,
               stateNavigator: 0,
-              bussines: widget.business)));
+              bussines: widget.business),
+        ),
+      );
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).push(
+        MaterialPageRoute(
           builder: (BuildContext context) => OrdersWidget(
               currentTab: 0,
               user: widget.user,
               stateNavigator: 1,
-              bussines: widget.business)));
+              bussines: widget.business),
+        ),
+      );
     }
   }
 
